@@ -5,6 +5,9 @@ Option pricing
 ---------------------
 
 '''
+import numpy as np
+from pfv import  * # onePeriodPrice
+from math import exp, sqrt
 
 class Binomial:
     '''

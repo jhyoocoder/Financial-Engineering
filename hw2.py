@@ -3,6 +3,9 @@ homework 2
 ==========
 '''
 from bfc import *
+from bfc.binomial import Binomial
+from bfc.pfv import onePeriodPrice
+import numpy as np
 
 def calcAmericanCall(sel):
         for i in range(sel.n,0,-1):
@@ -23,19 +26,19 @@ def calcAmericanCall(sel):
 
 if __name__ == '__main__':
     q = Binomial()
-    
+
     q.setFromBS(0.25,0.02,15,0.01,0.3,100,110,'american','call')
     #print "Q1: option price: {0:4}".format(q.calcOptionPrice())
 
     q2 = q
     q2.type[1]='put'
     print "Q2: option price: {0:4}".format(q2.calcOptionPrice())
-    
+
     q6 = q
     q6.setFromBS(0.25,0.02,15,0.01,0.3,100,110,'american','call')
     q6.n = 10
     print "Q6: option price: {0:4}".format(calcAmericanCall(q6))
-    
+
     q8a = Binomial()
     q8a.setFromBS(0.25,0.02,15,0.01,0.3,100,100,'european','call')
     q8b = Binomial()
@@ -59,4 +62,3 @@ if __name__ == '__main__':
             Cf = [onePeriodPrice(Cf[j],Cf[j+1],q8a.q,(q8a.R-1)) \
                        for j in range(0,i)]
     print Cf
-    
